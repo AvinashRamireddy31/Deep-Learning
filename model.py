@@ -1,3 +1,4 @@
+# Import libraries
 import os
 
 import torch
@@ -7,8 +8,8 @@ from torch.nn import Linear
 
 torch.manual_seed(1)  
 
-class LR(nn.Module):
-
+# Model construction
+class LR(nn.Module): 
     def __init__(self, input_size, output_size):
        super().__init__()
        self.linear = nn.Linear(in_features= input_size, out_features= output_size)
@@ -17,9 +18,15 @@ class LR(nn.Module):
         pred =  self.linear(x)
         return pred 
 
-model = LR(2,1)
-result = model.forward(x = torch.tensor([[1.0, 2.0], [2.0, 4.5]], dtype= torch.float32))
-print(result)
+#Implementation
+model = LR(2,1) 
+[w,b] = model.parameters()
+
+print(w)
+print(w[0][1].item())
+
+# result = model.forward(x=torch.tensor([[1.0, 2.0], [2.0, 4.5]], dtype=torch.float32))
+# print(result)
 
 
 
