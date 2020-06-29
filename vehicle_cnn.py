@@ -12,8 +12,8 @@ import torch.optim as optim
 
 import torchvision  
 import torchvision.models as models
-import torchvision.datasets as datasets 
 import torchvision.transforms as transforms
+from torchvision.datasets import ImageFolder
 from torchvision.transforms import ToTensor
 
 
@@ -52,58 +52,6 @@ def get_images(data_set):
 
 def get_train_and_test_split(X, y):
     return train_test_split(X, y, test_size = 0.33, random_state = 42)
-
-def train_model(model, data_loaders, criterion, optimizer, epochs = 5):
-    for epoch in range(epochs):
-        print(f"Epoch {epoch}/ {epochs-1} ")
-        print('_'*15)
-
-        for phase in ['train', 'eval']:
-            if phase == 'train':
-                model.train()
-            else:
-                model.eval()
-
-            running_loss = 0.0
-            correct = 0
-
-            for inputs, labels in data_loaders[phase]:
-                inputs = inputs.to(device)
-                labels = labels.to(device)
-
-                optimizer.zero_grad()
-
-                with T.set_grad_enabled(phase == 'train'):
-                    outputs = model(inputs)
-                    loss = criterion(outputs, labels)
-
-                    _, preds = T.max(outputs, 1)
-
-                    if phase == 'train':
-                        loss.backward()
-                        optimizer.step()
-
-                loss_item = loss.item # Tensor to numpy using 'item
-                
-                running_loss += loss_item * inputs.size(0)
-                correct += T.sum(preds == labels.data)
-
-            epoch_loss = running_loss / len(data_loaders[phase].dataset)
-            epoch_acc = correct.double() / len(data_loaders[phase].dataset)
-
-            print('{} Loss: {:.4f} Acc: {:.4f}'.format(phase, epoch_loss, epoch_acc))
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
