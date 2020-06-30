@@ -13,6 +13,8 @@ import torch.optim as optim
 import torchvision  
 import torchvision.models as models
 import torchvision.transforms as transforms
+
+from torch.utils.data import Dataset, DataLoader
 from torchvision.datasets import ImageFolder
 from torchvision.transforms import ToTensor
 
@@ -50,9 +52,15 @@ def get_images(data_set):
 
     return images
 
-def get_train_and_test_split(X, y):
-    return train_test_split(X, y, test_size = 0.33, random_state = 42)
-
+# class MyDataset(Dataset):
+#     def __init__(self, data):
+#         super().__init__()
+#         self.data = data
+#     def __len__(self):
+#         return len(self.data)
+#     def __getitem__(self, idx):
+#         return self.data[idx]
+    
 
 
 #Implementation
@@ -65,6 +73,4 @@ test_images = get_images(test_data)
 X = train_images
 y = train_data['emergency_or_not']
 
-# Train and validation split
-X_train, X_dev, y_train, y_dev = get_train_and_test_split(X, y)
-print(len(X_train))
+
