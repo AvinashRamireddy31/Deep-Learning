@@ -21,6 +21,7 @@ def get_device():
 
 device = get_device()
 print("Device:", device)
+
 #Read data
 df_train = pd.read_csv("data/msnist/mnist_train.csv", header = None)
 df_test = pd.read_csv("data/msnist/mnist_test.csv", header = None)
