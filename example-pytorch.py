@@ -22,11 +22,12 @@ def get_device():
 device = get_device()
 print("Device:", device)
 #Read data
-df_train = pd.read_csv("data/msnist/mnist_train.csv")
-df_test = pd.read_csv("data/msnist/mnist_test.csv")
+df_train = pd.read_csv("data/msnist/mnist_train.csv", header = None)
+df_test = pd.read_csv("data/msnist/mnist_test.csv", header = None)
 
 print(df_train.shape)
 print(df_test.shape)
+
 #Get the image pixel values and labels
 train_labels = df_train.iloc[:, 0]
 train_images = df_train.iloc[:, 1:]
@@ -103,6 +104,8 @@ criterion = nn.CrossEntropyLoss()
 optimizer = optim.SGD(net.parameters(), lr = 0.001, momentum = 0.0)
 
 def train(net, trainloader):
+    print("Training started")
+
     for epoch in range(10): # No. of epochs
         running_loss = 0
         for data in trainloader:
