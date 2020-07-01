@@ -1,4 +1,5 @@
 import os
+import torch
 import numpy as np
 import pandas as pd
 
@@ -19,7 +20,7 @@ import torchvision.transforms as transforms
 
 from torch.utils.data import Dataset, DataLoader
 from torchvision.datasets import ImageFolder
-from torchvision.transforms import ToTensor
+from torchvision.transforms import ToTensor, transforms
 
 
 #Constants
@@ -69,9 +70,55 @@ def show_sample_item(dataset_array, item_idx = 0): #random default number
     img.show()
 
 # show_sample_item(train_X, item_idx = 1389)
-# show_sample_item(test_X)
- 
+# show_sample_item(test_X) 
 
-# #Save data as CSV file
-# dummy = np.append(train_X[0], train_y[0], axis = 1)
-# print(dummy)
+def get_device():
+    if torch.cuda.is_available():
+        device = "cuda:0"
+    else:
+        device = "cpu"
+
+    return device
+
+device = get_device()
+print("Device:", device)
+
+#Get the image pixel values and labels
+train_images = train_X
+train_labels = train_y
+
+# Define transforms
+transform = transforms.Compose(
+    [
+        transforms.ToPILImage(),
+        transforms.ToTensor(),
+        transforms.Normalize((0.5,), (0.5,))
+    ]
+)
+
+
+class VehicleDataset(Dataset):
+    def __init__(self, images, labels= None, transforms= None):
+        super().__init__()
+        self.X = images
+        self.y = labels
+        self.transforms = transforms
+
+    def __len__(self):
+        return len(self.X)
+
+    def __getitem__(self, i):
+        data = self.X[i]
+        data = data.astype(np.uint8).reshape(224,224,3)
+
+        if self.transforms:
+            data = self.transforms(data)
+        
+        if self.y is not None:
+            return (data, self.y[i])
+        else:
+            return data
+
+train_data = VehicleDataset(train_images, train_labels, transform)
+print(train_data[139])
+
