@@ -80,7 +80,7 @@ class Net(nn.Module):
         self.conv1 = nn.Conv2d(in_channels=1, out_channels=20, kernel_size=5, stride=1)
         self.conv2 = nn.Conv2d(in_channels=20, out_channels=50, kernel_size=5, stride=1)
 
-        self.fc1   = nn.Linear(in_features=800, out_features=500)
+        self.fc1   = nn.Linear(in_features=8000, out_features=500)
         self.fc2   = nn.Linear(in_features=500, out_features=10)
 
     def forward(self, x):
