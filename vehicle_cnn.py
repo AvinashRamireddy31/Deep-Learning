@@ -3,6 +3,9 @@ import numpy as np
 import pandas as pd
 
 from PIL import Image
+from matplotlib import image
+
+import matplotlib.pyplot as plt
 
 from sklearn.model_selection import train_test_split
 
@@ -32,45 +35,43 @@ def get_test_data():
     path = os.path.join("data", "test.csv")
     return pd.read_csv(path)
 
-def get_all_images():
-    all_images = []
-
-    #Iterate through images folder
-    for filename in os.listdir(IMAGES_DIRECTORY):
-        if filename.endswith("jpg"):# Load 'jpg' images only
-            img = Image.open(os.path.join(IMAGES_DIRECTORY, filename))
-            all_images.append(img)
-
-    return all_images
-
-def get_images(data_set):
+def get_images_array(data_set):
     images = [] 
 
     for filename in data_set['image_names']:
-        img = Image.open(os.path.join(IMAGES_DIRECTORY,filename))
+        img_path = os.path.join(IMAGES_DIRECTORY,filename)
+
+        img = image.imread(img_path)
+        
         images.append(img)
 
     return images
-
-# class MyDataset(Dataset):
-#     def __init__(self, data):
-#         super().__init__()
-#         self.data = data
-#     def __len__(self):
-#         return len(self.data)
-#     def __getitem__(self, idx):
-#         return self.data[idx]
-    
 
 
 #Implementation
 train_data = get_train_data()
 test_data = get_test_data()
-train_images = get_images(train_data)
-test_images = get_images(test_data)
+train_images = get_images_array(train_data)
+test_images = get_images_array(test_data)
 
 #Load train and validation data
-X = train_images
-y = train_data['emergency_or_not']
+train_X = train_images
+train_y = train_data['emergency_or_not']
 
+test_X = test_images
 
+print("Shape of each train image:", train_X[0].shape)
+print("Shape of each test image:", test_X[0].shape)
+
+def show_sample_item(dataset_array, item_idx = 0): #random default number
+    sample = dataset_array[item_idx]
+    img = Image.fromarray(sample)
+    img.show()
+
+# show_sample_item(train_X, item_idx = 1389)
+# show_sample_item(test_X)
+ 
+
+# #Save data as CSV file
+# dummy = np.append(train_X[0], train_y[0], axis = 1)
+# print(dummy)
