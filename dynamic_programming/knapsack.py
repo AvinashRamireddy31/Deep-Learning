@@ -1,7 +1,7 @@
 
 val = [60, 100, 180] 
 wt  = [20, 20,  30] 
-capacity   = 50
+capacity = 50
 length   = len(val)
 
 def knapsack_memoization(capacity, length):
