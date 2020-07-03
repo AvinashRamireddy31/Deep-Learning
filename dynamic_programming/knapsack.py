@@ -4,7 +4,7 @@ wt  = [2, 3, 1]
 capacity = 3
 length   = len(val)
 
-def knapsack_memoization(capacity, length):
+def knapsack_tabulation(capacity, length):
 
     #Initialize with '0'
     K = [[0 for _ in range(capacity + 1)] for _ in range(length + 1)] 
@@ -44,10 +44,10 @@ def knapsack_recursive(W, n):
     return knapsack_recursive(W, n-1) #exclude weight
 
 max_value = knapsack_recursive(capacity, length)
-print(max_value)
+print("recursive:",max_value)
 
-max_value = knapsack_memoization(capacity, length)
-print(max_value)
+max_value = knapsack_tabulation(capacity, length)
+print("Tabulation:",max_value)
 
 
 
