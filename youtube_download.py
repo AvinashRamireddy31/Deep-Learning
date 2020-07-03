@@ -7,9 +7,8 @@ def downloadYouTube(videourl, path, filename):
     yt = yt.streams.filter(progressive= True, file_extension='mp4').order_by('resolution').desc().first()
     if not os.path.exists(path):
         os.makedirs(path)
-    yt.download(path)
-    yt.set_filename(filename)
+    yt.download(path, filename)
 
-videourl = 'https://www.youtube.com/watch?v=VVDHU_TWwUg&list=PLqnslRFeH2UrcDBWF5mfPGpqQDSta6VK4&index=6'
+videourl = 'https://www.youtube.com/watch?v=_gPcYovP7wc&list=PL_z_8CaSLPWekqhdCPmFohncHwz8TY2Go&index=7'
  
-downloadYouTube(videourl, path='./video/PyTorch Tutorial', filename=' 06 - Training Pipeline: Model, Loss, and Optimizer')
+downloadYouTube(videourl, path='./videos/Dynamic_Programming', filename='7 Test Subset Sum Problem')

@@ -115,11 +115,12 @@ class VehicleDataset(Dataset):
             return data
 
 train_data = VehicleDataset(train_images, train_labels, transform)
+test_data = VehicleDataset(train_images, train_labels, transform)
 
 
 #Dataloaders
 trainloader = DataLoader(train_data, batch_size = 128, shuffle = True)
-testloader = DataLoader(train_data, batch_size = 128, shuffle = True)
+testloader = DataLoader(test_data, batch_size = 128, shuffle = True)
 
 #Define Neural net class
 class Net(nn.Module):
