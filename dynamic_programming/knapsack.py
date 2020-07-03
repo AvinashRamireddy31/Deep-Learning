@@ -20,6 +20,7 @@ def knapsack_tabulation(capacity, length):
             else:
                 K[l][c] = K[l-1][c] # exclude
 
+    # Display logic
     for x in range(length+1):
         print("x:", x, end='\t')
         for y in range(capacity+1):
