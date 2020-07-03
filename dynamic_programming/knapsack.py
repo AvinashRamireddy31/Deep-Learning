@@ -7,11 +7,11 @@ length   = len(val)
 def knapsack_memoization(capacity, length):
 
     #Initialize with '0'
-    K = [[0 for x in range(capacity + 1)] for _ in range(length + 1)] 
+    K = [[0 for _ in range(capacity + 1)] for _ in range(length + 1)] 
 
     for l in range(length+1):
         for c in range(capacity+1):  
-            if l == 0 or  c == 0 :
+            if l == 0 or c == 0 : # stopping criteria
                 K[l][c] = 0
             elif wt[l-1] <= c:
                 K[l][c] = max( val[l-1] + K[l-1][c - wt[l-1]], #include
