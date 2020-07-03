@@ -30,7 +30,7 @@ def knapsack_recursive(W, n):
         
     if wt[n-1] <= W: 
         max_value = max( 
-                        val[n-1] + knapsack_recursive( W - wt[n-1], n-1), # include weight
+                        val[n-1] + knapsack_recursive( W - wt[n-1], n-1), # include weight: add respective value and reduce capacity 
                         knapsack_recursive(W,  n-1) # exclude weight
                     )
         return max_value
