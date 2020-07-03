@@ -1,7 +1,7 @@
 
 val = [60, 100, 180] 
-wt  = [20, 20,  30] 
-capacity = 50
+wt  = [2, 2, 3] 
+capacity = 5
 length   = len(val)
 
 def knapsack_memoization(capacity, length):
@@ -19,6 +19,12 @@ def knapsack_memoization(capacity, length):
                         
             else:
                 K[l][c] = K[l-1][c] # exclude
+
+    for x in range(length+1):
+        print("x:", x, end='\t')
+        for y in range(capacity+1):
+            print(K[x][y], end='\t')
+        print(" ") 
                 
     return K[length][capacity]
      
