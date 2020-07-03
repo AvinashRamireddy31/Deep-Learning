@@ -14,11 +14,11 @@ def knapsack_memoization(capacity, length):
             if l == 0 or  c == 0 :
                 K[l][c] = 0
             elif wt[l-1] <= c:
-                K[l][c] = max( val[l-1] + K[l-1][c - wt[l-1]], 
-                               K[l-1][c])  
+                K[l][c] = max( val[l-1] + K[l-1][c - wt[l-1]], #include
+                               K[l-1][c])  # exclude
                         
             else:
-                K[l][c] = K[l-1][c]
+                K[l][c] = K[l-1][c] # exclude
                 
     return K[length][capacity]
      
