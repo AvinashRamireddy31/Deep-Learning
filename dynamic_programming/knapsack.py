@@ -47,7 +47,7 @@ max_value = knapsack_recursive(capacity, length)
 print("recursive:",max_value)
 
 max_value = knapsack_tabulation(capacity, length)
-print("Tabulation:",max_value)
+print("Tabulation:", max_value)
 
 
 
