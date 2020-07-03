@@ -1,6 +1,6 @@
 
-val = [60, 100, 120] 
-wt  = [10, 20,  30] 
+val = [60, 100, 80] 
+wt  = [20, 20,  30] 
 capacity   = 40
 length   = len(val)
 
@@ -8,15 +8,15 @@ length   = len(val)
 def knapsack_memoization(capacity, length):
 
     #Initialize with '0'
-    K = [[0 for x in range(capacity + 1)] for x in range(length + 1)] 
+    K = [[0 for x in range(capacity + 1)] for _ in range(length + 1)] 
 
     for l in range(length+1):
         for c in range(capacity+1):  
             if l == 0 or  c == 0 :
                 K[l][c] = 0
             elif wt[l-1] <= c:
-                K[l][c] = max( val[l-1] + K[l-1][capacity - wt[l-1]], 
-                               K[l-1][c]) 
+                K[l][c] = max( val[l-1] + K[l-1][c - wt[l-1]], 
+                               K[l-1][c])  
                         
             else:
                 K[l][c] = K[l-1][c]
