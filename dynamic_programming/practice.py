@@ -37,12 +37,15 @@ class Implement():
     remove_count = 3
 
     # Data input
-    dict_data = value_counts([2, 4, 1, 5, 3, 5, 1, 3])
+    # dict_data = value_counts([2, 4, 1, 5, 3, 5, 1, 3])
     # dict_data = value_counts([1, 1, 1, 2, 2, 3, 3, 4, 4, 4, 4])
-    # dict_data = value_counts([2, 2, 1, 3, 3, 3])
+    dict_data = value_counts(['b', 'b', 'a', 'c', 'c', 'c'])
 
     # Calling
     sorted_dict_data = get_sorted_value_counts(dict_data)
+    print("Sorted data:", sorted_dict_data)
+    print("Remove count:", remove_count)
+    
     output = get_output(sorted_dict_data, remove_count)
     print("Unique :",output)
 
