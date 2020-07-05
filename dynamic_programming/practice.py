@@ -14,27 +14,16 @@ def value_counts(items):
 def get_sorted_value_counts(dict_data):
     return {k:v for k,v in sorted(dict_data.items(), key = lambda i:i[1], reverse = False)}
 
-
-# dict_data = value_counts([1, 1, 1, 2, 2, 3, 3, 4, 4, 4, 4])
-dict_data = value_counts([2, 2, 1, 3, 3, 3])
-
-sorted_dict_data = get_sorted_value_counts(dict_data)
-
 def get_output(sorted_dict_data, remove_count):  
     for key in sorted_dict_data.keys():
-        value = sorted_dict_data[key] 
-
+        value = sorted_dict_data[key]  
         if remove_count >= value: 
             sorted_dict_data[key] = 0 # Remove all values(count) 
             
-            remove_count -= value
-            
-            print("Inside", remove_count)
+            remove_count -= value 
         else:  
-            sorted_dict_data[key] = value - remove_count
-            remove_count = 0 # Exhausted 
-
-            print("Else", remove_count) 
+            sorted_dict_data[key] = value - remove_count # Remaining
+            remove_count = 0 # Exhausted   
  
     print(sorted_dict_data)
 
@@ -42,11 +31,22 @@ def get_output(sorted_dict_data, remove_count):
 
     return len(remaining)
 
-#Given in question
-remove_count = 3
+class Implement():
 
-output = get_output(sorted_dict_data, remove_count)
-print("Unique :",output)
+    #Given in question
+    remove_count = 3
+
+    # Data input
+    dict_data = value_counts([2, 4, 1, 5, 3, 5, 1, 3])
+    # dict_data = value_counts([1, 1, 1, 2, 2, 3, 3, 4, 4, 4, 4])
+    # dict_data = value_counts([2, 2, 1, 3, 3, 3])
+
+    # Calling
+    sorted_dict_data = get_sorted_value_counts(dict_data)
+    output = get_output(sorted_dict_data, remove_count)
+    print("Unique :",output)
+
+Implement()
 
 
 
