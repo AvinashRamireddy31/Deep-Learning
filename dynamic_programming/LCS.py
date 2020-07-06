@@ -10,7 +10,10 @@ def LCS(x, y, m, n):
         mat[m][n] = 1 + LCS(x, y, m-1, n-1)
         return mat[m][n]
     else:
-        mat[m][n] = max( LCS(x, y, m-1, n), LCS(x, y, m, n-1))
+        mat[m][n] = max(
+                        LCS(x, y, m-1, n), 
+                        LCS(x, y, m, n-1)
+                        )
         return mat[m][n]
 
     
@@ -19,6 +22,9 @@ def LCS(x, y, m, n):
 # Driver program to test the above function 
 X = "GAGATB"
 Y = "XATGTYBC"
+
+X = "abcd"
+Y = "abdc"
 
 m = len(X)
 n = len(Y)
@@ -33,20 +39,20 @@ print ("Length of LCS is ", LCS(X, Y, m, n))
 def LCS_Print(x, y, m, n): 
     
     matched_string_size = mat[m][n]  # initialize with last value of matrix which has longest length.
-    result = [""] * matched_string_size
-    
+    result = [""] * matched_string_size 
     i = m
-    j = n
+    j = n 
+    
     while i > 0 and j > 0:
-        if X[i-1] == y[j-1]:
+        if x[i-1] == y[j-1]:
             # This is bottom-up approach, so first value is stored in last place of matrix. So we insert at last place to get the proper order
             matched_string_size -= 1
-            result[matched_string_size] = X[i-1]
+            result[matched_string_size] = x[i-1] 
 
             i -= 1
-            j -= 1
-        
-        if mat[i-1][j] > mat[i][j-1]:
+            j -= 1  
+
+        elif mat[i-1][j] > mat[i][j-1]:
             i -= 1
         else:
             j -= 1
@@ -57,4 +63,4 @@ def LCS_Print(x, y, m, n):
 
     
 
-print ("LCS", LCS_Print(X, Y, m, n))
+print ("Longest subsequence ", LCS_Print(X, Y, m, n))
