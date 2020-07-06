@@ -23,8 +23,8 @@ def LCS(x, y, m, n):
 X = "GAGATB"
 Y = "XATGTYBC"
 
-X = "abcd"
-Y = "abdc"
+# X = "ABCD"
+# Y = "XYZ"
 
 m = len(X)
 n = len(Y)
@@ -33,17 +33,15 @@ mat = [[-1 for x in range(n+1)] for x in range(m+1)]
 print ("Length of LCS is ", LCS(X, Y, m, n)) 
 
 
-  
-
 #Print longest common subsequence
-def LCS_Print(x, y, m, n): 
-    
+def LCS_Print(x, y, m, n):  
     matched_string_size = mat[m][n]  # initialize size with last value of matrix which has longest length.
     result = [""] * matched_string_size 
+    
     i = m
     j = n 
     
-    while i > 0 and j > 0:
+    while i > 0 and j > 0: 
         if x[i-1] == y[j-1]:
             # This is bottom-up approach, so first value is stored in last place of matrix. So we insert at last place to get the proper order
             matched_string_size -= 1
