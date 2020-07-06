@@ -17,8 +17,8 @@ def LCS(x, y, m, n):
 
 
 # Driver program to test the above function 
-X = "AGGTAB"
-Y = "GXTXAYB"
+X = "GAGATB"
+Y = "XATGTYBC"
 
 m = len(X)
 n = len(Y)
@@ -30,37 +30,29 @@ print ("Length of LCS is ", LCS(X, Y, m, n))
   
 
 #Print longest common subsequence
-# https://www.geeksforgeeks.org/printing-longest-common-subsequence-set-2-printing/
 def LCS_Print(x, y, m, n): 
-
-    s = set() 
-
-    if m == 0 or n == 0:
-        s.add("")
-        return s
     
-    # If the last characters of X and Y are same 
-    if x[m-1] == y[n-1]:
-        tmp = LCS_Print(x, y, m-1, n-1) 
+    matched_string_size = mat[m][n]  # initialize with last value of matrix which has longest length.
+    result = [""] * matched_string_size
+    
+    i = m
+    j = n
+    while i > 0 and j > 0:
+        if X[i-1] == y[j-1]:
+            # This is bottom-up approach, so first value is stored in last place of matrix. So we insert at last place to get the proper order
+            matched_string_size -= 1
+            result[matched_string_size] = X[i-1]
 
-        # append current character to all possible substring
-        for string in tmp: 
-            s.add(string + x[m - 1]) 
+            i -= 1
+            j -= 1
+        
+        if mat[i-1][j] > mat[i][j-1]:
+            i -= 1
+        else:
+            j -= 1
 
-    # If the last characters of X and Y are not same
-    else:
-         
-        if mat[m - 1][n] >= mat[m][n - 1]: 
-            s = LCS_Print(x, y, m - 1, n)
-        
-        if mat[m][n - 1] >= mat[m - 1][n]: 
-            tmp = LCS_Print(x, y, m, n - 1) 
-        
-        # merge two sets if L[m-1][n] == L[m][n-1] 
-        # Note s will be empty if L[m-1][n] != L[m][n-1] 
-        for i in tmp: 
-            s.add(i) 
-    return s
+    return "".join(result) # Convert list to string
+
 
 
     
