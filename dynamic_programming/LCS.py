@@ -49,13 +49,15 @@ def LCS_Print(x, y, m, n):
 
     # If the last characters of X and Y are not same
     else:
-        # return max( LCS(x, y, m-1, n), LCS(x, y, m, n-1)) 
+         
         if mat[m - 1][n] >= mat[m][n - 1]: 
             s = LCS_Print(x, y, m - 1, n)
-
+        
         if mat[m][n - 1] >= mat[m - 1][n]: 
             tmp = LCS_Print(x, y, m, n - 1) 
         
+        # merge two sets if L[m-1][n] == L[m][n-1] 
+        # Note s will be empty if L[m-1][n] != L[m][n-1] 
         for i in tmp: 
             s.add(i) 
     return s
