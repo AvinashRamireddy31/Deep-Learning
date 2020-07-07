@@ -28,7 +28,7 @@ def is_subset_sum_tabulation(length, target):
         print(" ") 
     print("  ")
                 
-    return K[length][target]
+    return K[length][target] 
 
 
 def is_subset_sum_recursive(length, target):

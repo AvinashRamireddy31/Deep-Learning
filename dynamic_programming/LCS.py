@@ -30,14 +30,14 @@ m = len(X)
 n = len(Y)
 
 mat = [[-1 for x in range(n+1)] for x in range(m+1)] 
-print ("Length of LCS is ", LCS(X, Y, m, n)) 
+print("Length of LCS is ", LCS(X, Y, m, n)) 
 
 
 #Print longest common subsequence
 def LCS_Print(x, y, m, n):  
     matched_string_size = mat[m][n]  # initialize size with last value of matrix which has longest length.
     result = [""] * matched_string_size 
-    
+
     i = m
     j = n 
     
