@@ -16,8 +16,6 @@ def max_path_sum(grid):
             elif j > 0:
                 grid[i][j] += grid[i][j-1] 
             
-             
-    
     return grid[-1][-1]  
 
     
@@ -28,4 +26,6 @@ data = [
 ] 
 result = max_path_sum(data)
 print("Minimum path sum is",result)
+
+ 
     

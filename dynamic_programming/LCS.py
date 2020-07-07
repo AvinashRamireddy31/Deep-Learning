@@ -14,7 +14,7 @@ def LCS(x, y, m, n):
                         LCS(x, y, m-1, n), 
                         LCS(x, y, m, n-1)
                         )
-        return mat[m][n]
+    return mat[m][n]
 
     
 
